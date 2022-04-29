@@ -1,0 +1,37 @@
+In Ship.ts, inheritance can be used to make code "dry".
+
+beforeEach implementation needed for gameBoard tests.
+
+after game starts, a helper method may delete all placable fields
+
+helperfor gameBoard --> row, column to index --> you can ask at reactiflux for convention to name this
+
+ getImplacableIndexes method may look better
+
+coordinate should be number[] or <Coordinate> , there is ambugity
+
+carefully inspect which properties can use getter method.
+
+this.rival (red warning for typescript) search and if can't find solution, ask this to somewhere (reactiflux)
+
+can you use constructor to initiate properties of according classes?
+
+test for to place implacable coordinate
+
+// how others do same game?
+look for how game -> player -> gameboard -> ship objects relation
+how rival player1 to player2?
+how they planned and implemented tests?
+
+To do
+babel plug-in for styled components
+definitely rename styled component and imported components names.
+game.player1.gameBoard.coordinates <-- can you shorten this?
+check if player see 1 battleships or single es/s at the end of the word.
+
+More tests
+
+if game is not started, there is no winner!
+
+
+

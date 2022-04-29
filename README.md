@@ -1,4 +1,32 @@
-# battleship-with-tests
-[live preview](https://harunfr.github.io/battleship-with-tests/)
 
-*only basic styling and logic included for now
+
+
+things todo:
+  user should know which board is hers/his.
+  play button is on middle
+  random button is on right
+  add some box shadow
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
