@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/battleship/static/js/main.14e7391a.js",
+    "index.html": "/battleship/index.html",
+    "main.14e7391a.js.map": "/battleship/static/js/main.14e7391a.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.14e7391a.js"
+  ]
+}
