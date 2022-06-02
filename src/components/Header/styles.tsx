@@ -29,9 +29,10 @@ export const Notification = styled.div`
   background-color: #f8f8f8;
   /* border: 2px solid red; */
   border-radius: 5px;
-  width: 20%;
+  width: 30%;
   margin-left: -9rem;
   padding: 0.8rem;
+  text-align: center;
 `;
 export const ThemeButton = styled(RiContrast2Line)`
   font-size: 2rem;

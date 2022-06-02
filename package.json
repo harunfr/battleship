@@ -38,8 +38,7 @@
     "lint": "eslint --fix --color --ext .js,.ts,.tsx ./src --ignore-path .gitignore",
     "prettier": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\"",
     "lint-staged": "lint-staged --config lint-staged.js",
-    "husky-install": "husky install",
-    "notsstart": "DISABLE_ESLINT_PLUGIN=true react-scripts start"
+    "husky-install": "husky install"
   },
   "eslintConfig": {
     "extends": [

@@ -1,124 +1,50 @@
-import React, { useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import React from 'react';
 
-import GlobalStyle from '../../styles/global';
-import Header from '../Header';
+import { Container } from './styles';
 
-import {
-  Container,
-  Wrapper,
-  Text,
-  CoordinatesWrapper,
-  BoardBlock,
-  PlaceButton,
-  PlayButton,
-} from './styles';
-import Game from '../../GameElements/Game';
+import PlayerGameBoard from './PlayerGameBoard';
+import RivalGameBoard from './RivalGameBoard';
 
-const game = new Game();
+import { Coordinate } from '../../GameElements/GameBoard';
 
-function Main(): React.ReactElement {
-  const [isPlaced, setIsPlaced] = useState(!game.isReady);
-  const [isGameStarted, setIsGameStarted] = useState(game.isReady);
-  const [winner, setWinner] = useState<undefined | string>(undefined);
-  const [coordinates, setCoordinates] = useState(
-    game.player2.gameBoard.coordinates,
-  );
-  const [coordinates2, setCoordinates2] = useState(
-    game.player1.gameBoard.coordinates,
-  );
+interface MainProps {
+  rivalCoords: Coordinate[];
+  playerCoords: Coordinate[];
+  // eslint-disable-next-line no-unused-vars
+  handleClick: ([row, column]: number[]) => void;
+  isPlaced: boolean;
+  isGameStarted: boolean;
+  handleRandomise: () => void;
+  handleGameStart: () => void;
+  winner: string | undefined;
+}
 
-  const handleRandomise: React.MouseEventHandler<HTMLButtonElement> = () => {
-    game.player1.placeRandomly();
-    setIsPlaced(!game.isReady);
-    setCoordinates2(game.player1.gameBoard.coordinates);
-  };
-
-  const handleGameStart: React.MouseEventHandler<HTMLButtonElement> = () => {
-    setIsGameStarted(true);
-  };
-
-  const handleClick = ([row, column]: number[]) => {
-    const isNotAbleToAttack = !game.playerOnesTurn
-      || !game.player1.canAttack([row, column])
-      || !isGameStarted;
-
-    if (isNotAbleToAttack) {
-      return;
-    }
-
-    game.player1.attack([row, column]);
-    const updatedCoords = game.player2.gameBoard.coordinates.slice(0);
-    setCoordinates(updatedCoords);
-
-    if (game.winner) {
-      setWinner(game.winner);
-    }
-    game.randomAttack();
-  };
-
+function Main({
+  rivalCoords,
+  playerCoords,
+  handleClick,
+  isPlaced,
+  isGameStarted,
+  handleRandomise,
+  handleGameStart,
+  winner,
+}: MainProps): React.ReactElement {
   return (
-    <>
-      <GlobalStyle />
-      {winner && (
-        <div
-          style={{
-            width: '500px',
-            height: '500px',
-            backgroundColor: '#8a8827b3',
-          }}
-        >
-          The winner is
-          {winner}
-          !!!!!!
-        </div>
-      )}
-      <Header isGameStarted={isGameStarted} isPlaced={isPlaced} />
-      <Container>
-        <Wrapper alignItems="flex-start">
-          <Wrapper flexDirection="column">
-            <CoordinatesWrapper>
-              {coordinates.map((coordinate) => (
-                <BoardBlock
-                  clickHandler={() =>
-                    handleClick([coordinate.row, coordinate.column])}
-                  row={coordinate.row}
-                  column={coordinate.column}
-                  attacked={coordinate.attacked}
-                  hasShip={coordinate.hasShip}
-                  key={uuidv4()}
-                />
-              ))}
-            </CoordinatesWrapper>
-            <Text>Opponent&apos;s Board</Text>
-          </Wrapper>
-          <Wrapper flexDirection="column">
-            <CoordinatesWrapper>
-              {coordinates2.map((coordinate) => (
-                <BoardBlock
-                  row={coordinate.row}
-                  column={coordinate.column}
-                  attacked={coordinate.attacked}
-                  hasShip={coordinate.hasShip}
-                  key={uuidv4()}
-                />
-              ))}
-            </CoordinatesWrapper>
-            <Text>Your Board</Text>
-            <Wrapper>
-              {isPlaced && (
-                <PlaceButton onClick={handleRandomise}>Randomize</PlaceButton>
-              )}
-              {!isGameStarted && (
-                <PlayButton onClick={handleGameStart} disabled={isPlaced}>
-                  Play
-                </PlayButton>
-              )}
-            </Wrapper>
-          </Wrapper>
-        </Wrapper>
-      </Container>
-    </>
+    <Container>
+      <RivalGameBoard
+        winner={winner}
+        rivalCoords={rivalCoords}
+        handleClick={handleClick}
+      />
+      <PlayerGameBoard
+        coordinates={playerCoords}
+        handleRandomise={handleRandomise}
+        isPlaced={isPlaced}
+        isGameStarted={isGameStarted}
+        handleGameStart={handleGameStart}
+        winner={winner}
+      />
+    </Container>
   );
 }
 export default Main;

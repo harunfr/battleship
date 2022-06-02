@@ -23,9 +23,9 @@ function Header({ isGameStarted, isPlaced }: HeaderProps): React.ReactElement {
       </Logo>
       <Notification>
         <Text>
-          {isPlaced && 'Place Ships..'}
+          {isPlaced && 'Place Ships...'}
           {isGameStarted && "Attack opponents's board..."}
-          {!isPlaced && !isGameStarted && 'Waiting Player 1 to be ready...'}
+          {!isPlaced && !isGameStarted && 'Waiting Player to be ready...'}
         </Text>
       </Notification>
       <Wrapper>
