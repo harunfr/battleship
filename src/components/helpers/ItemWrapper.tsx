@@ -1,11 +1,11 @@
 import React from 'react';
 
 interface WrapperProps {
+  alignItems?: string;
   children: React.ReactNode;
   className?: string;
   flexDirection?: string;
   gap?: string;
-  alignItems?: string;
 }
 
 function ItemWrapper({

@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import GlobalStyle from './styles/global';
 import Header from './components/Header';
 import Main from './components/Main';
+import Footer from './components/Footer';
 
 import Game from './GameElements/Game';
 
+// initialize game.
 const game = new Game();
 
 function App(): JSX.Element {
@@ -52,10 +54,24 @@ function App(): JSX.Element {
     setRivalCoords(updatedRivalCoords);
   };
 
+  const newGameHandler = (): void => {
+    game.reset();
+    setIsPlaced(!game.isReady);
+    setIsGameStarted(game.isReady);
+    setWinner(undefined);
+    setRivalCoords(game.player2.gameBoard.coordinates.slice());
+    setPlayerCoords([...game.player1.gameBoard.coordinates.slice()]);
+  };
+
   return (
     <>
       <GlobalStyle />
-      <Header isGameStarted={isGameStarted} isPlaced={isPlaced} />
+      <Header
+        isGameStarted={isGameStarted}
+        isPlaced={isPlaced}
+        handleNewGame={newGameHandler}
+        winner={winner}
+      />
       <Main
         rivalCoords={rivalCoords}
         playerCoords={playerCoords}
@@ -66,6 +82,7 @@ function App(): JSX.Element {
         handleGameStart={handleGameStart}
         winner={winner}
       />
+      <Footer />
     </>
   );
 }

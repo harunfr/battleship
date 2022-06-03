@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import {
   Boat, Cruiser, Destroyer, Battleship,
 } from './Ship';

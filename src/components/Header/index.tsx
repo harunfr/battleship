@@ -1,36 +1,51 @@
 import React from 'react';
+
 import {
   Container,
   Logo,
   Notification,
-  ThemeButton,
-  LeaveButton,
+  NewGameButton,
   Text,
   Wrapper,
+  LoopIcon,
 } from './styles';
 
 interface HeaderProps {
   isPlaced: boolean;
   isGameStarted: boolean;
+  handleNewGame: () => void;
+  winner: string | undefined;
 }
 
-function Header({ isGameStarted, isPlaced }: HeaderProps): React.ReactElement {
+function Header({
+  isGameStarted,
+  isPlaced,
+  winner,
+  handleNewGame,
+}: HeaderProps): React.ReactElement {
   return (
     <Container>
       <Logo>
         Battleship
-        <Text>A classical board game.</Text>
+        <Text className="logo-text">A classical board game.</Text>
       </Logo>
       <Notification>
         <Text>
-          {isPlaced && 'Place Ships...'}
-          {isGameStarted && "Attack opponents's board..."}
-          {!isPlaced && !isGameStarted && 'Waiting Player to be ready...'}
+          {!winner && isPlaced && 'Place Ships...'}
+          {!winner && isGameStarted && "Attack opponents's board..."}
+          {!winner
+            && !isPlaced
+            && !isGameStarted
+            && 'Waiting player to be ready...'}
+          {winner && `Winner is ${winner}`}
         </Text>
       </Notification>
       <Wrapper>
-        {isGameStarted && <LeaveButton>Leave the game</LeaveButton>}
-        <ThemeButton />
+        <NewGameButton disabled={!isGameStarted} onClick={handleNewGame}>
+          New game
+          {' '}
+          <LoopIcon />
+        </NewGameButton>
       </Wrapper>
     </Container>
   );

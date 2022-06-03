@@ -1,3 +1,6 @@
+/* eslint-disable no-use-before-define */
+/* eslint-disable no-continue */
+/* eslint-disable no-shadow */
 import GameBoard from './GameBoard';
 import {
   Boat, Cruiser, Destroyer, Battleship,
@@ -18,8 +21,7 @@ export default class Player {
 
   get health() {
     return this.gameBoard.coordinates.filter(
-      (coordinate) =>
-        coordinate.attacked === false && coordinate.hasShip === true,
+      (coordinate) => coordinate.attacked === false && coordinate.hasShip === true,
     ).length;
   }
 
@@ -31,10 +33,9 @@ export default class Player {
     this.gameBoard.receiveAttack(coordinate);
   }
 
-  canAttack = (coordinate: number[]): boolean =>
-    this.rival!.gameBoard.coordinates[
-      Number(`${coordinate[0]}${coordinate[1]}`)
-    ].attacked === false;
+  canAttack = (coordinate: number[]): boolean => this.rival!.gameBoard.coordinates[
+    Number(`${coordinate[0]}${coordinate[1]}`)
+  ].attacked === false;
 
   attack(coordinate: number[]) {
     this.playerOnesTurn = !this.playerOnesTurn;
@@ -44,18 +45,13 @@ export default class Player {
 
   placeRandomly = () => {
     this.gameBoard.coordinates = this.gameBoard.getInitialCoordinates();
-    const randomIntFromInterval = (min: number, max: number): number =>
-      Math.floor(Math.random() * (max - min + 1) + min);
+    // eslint-disable-next-line max-len
+    const randomIntFromInterval = (min: number, max: number): number => Math.floor(Math.random() * (max - min + 1) + min);
 
     const axis = Math.random() > 0.5 ? 'h' : 'v';
     const { coordinates } = this.gameBoard;
-    // const suitableForBattleship = coordinates.filter(coord => coord.row < 7 && coord.column < 7)
     const randomRowBattleship = randomIntFromInterval(0, 6);
     const randomColumnBattleship = randomIntFromInterval(0, 6);
-    // const randomRowCruiser = randomIntFromInterval(0, 7)
-    // const randomColumnCruiser = randomIntFromInterval(0, 7)
-    // const randomRowDestroyer = randomIntFromInterval(0, 8)
-    // const randomColumnDestroyer = randomIntFromInterval(0, 8)
     let placedCruiser = 0;
     let placedDestroyer = 0;
     let placedBoat = 0;
@@ -74,7 +70,6 @@ export default class Player {
         randomRowCruiser,
         randomColumnCruiser,
       ]);
-      // {  row: 0,  column: 0,  hasShip: false,  attacked: false,  placable: true,},
 
       const hasInvalidCoordinate = cruiser.coordinates.some((coordinate) => {
         const index: number = Number(`${coordinate[0]}${coordinate[1]}`);
@@ -89,8 +84,6 @@ export default class Player {
     }
 
     while (placedDestroyer < 3) {
-      // console.log(`I run ${++count} times to place destroyer!`);
-
       const axis = Math.random() > 0.5 ? 'h' : 'v';
       const randomRowDestroyer = randomIntFromInterval(0, 8);
       const randomColumnDestroyer = randomIntFromInterval(0, 8);
@@ -98,7 +91,6 @@ export default class Player {
         randomRowDestroyer,
         randomColumnDestroyer,
       ]);
-      // {  row: 0,  column: 0,  hasShip: false,  attacked: false,  placable: true,},
 
       const hasInvalidCoordinate = destroyer.coordinates.some((coordinate) => {
         const index: number = Number(`${coordinate[0]}${coordinate[1]}`);
@@ -112,14 +104,10 @@ export default class Player {
       }
     }
     while (placedBoat < 4) {
-      // console.log(`I run ${++count} times to place boat!`);
-
       const axis = 'h';
       const randomRowBoat = randomIntFromInterval(0, 9);
       const randomColumnBoat = randomIntFromInterval(0, 9);
       const boat = new Boat(axis, [randomRowBoat, randomColumnBoat]);
-      // {  row: 0,  column: 0,  hasShip: false,  attacked: false,  placable: true,},
-
       const hasInvalidCoordinate = boat.coordinates.some((coordinate) => {
         const index: number = Number(`${coordinate[0]}${coordinate[1]}`);
         return !coordinates[index].placable;

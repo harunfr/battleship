@@ -2,8 +2,6 @@ import {
   Boat, Cruiser, Destroyer, Battleship,
 } from '../GameElements/Ship';
 import Player from '../GameElements/Player';
-// import GameBoard from '../GameElements/GameBoard.ts'
-// import Game from '../GameElements/Game.ts'
 
 const player1 = new Player();
 const player2 = new Player();
@@ -41,7 +39,7 @@ describe('Player Tests', () => {
   describe('Game Phase', () => {
     player1.attack([1, 1]);
 
-    test('marks attacked coordinate properly', () => {
+    test('Marks attacked coordinate properly.', () => {
       const expected = [
         {
           row: 1,
@@ -56,16 +54,16 @@ describe('Player Tests', () => {
       );
     });
 
-    test('player knows if shot is succesful', () => {
+    test('Player knows if shot is succesful.', () => {
       expect(player1.isSuccesfulAttack).toEqual(false);
     });
 
-    test('health doesnt change after miss', () => {
+    test('Health doesnt change after miss.', () => {
       player1.attack([1, 1]);
       expect(player2.health).toBe(20);
     });
 
-    test('marks attacked and occupied coordinate properly', () => {
+    test('Marks attacked and occupied coordinate properly.', () => {
       player1.attack([2, 2]);
       const expected = [
         {
@@ -81,11 +79,11 @@ describe('Player Tests', () => {
       );
     });
 
-    test('health decreases after miss', () => {
+    test('Health decreases after miss.', () => {
       expect(player2.health).toBe(19);
     });
 
-    test('player knows shot is succesful', () => {
+    test('Player knows shot is succesful.', () => {
       expect(player1.isSuccesfulAttack).toEqual(true);
     });
   });

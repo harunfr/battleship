@@ -33,45 +33,34 @@ const ships = [
 ];
 ships.forEach((ship) => {
   game.player1.place(ship);
-  game.player2.place(ship);
 });
 
-test('tracks each player is not ready', () => {
+// only player should be checked if he/she is ready.
+// game bot is placing its ships randomly.
+test('Checks each player is not ready.', () => {
   expect(game.player1.isReady).toStrictEqual(false);
-  expect(game.player2.isReady).toStrictEqual(false);
 });
 
-test('tracks game is not ready', () => {
-  expect(game.isReady).toStrictEqual(false);
-});
-
-test('tracks each player is ready', () => {
+test('Checks each player is ready.', () => {
   game.player1.place(boat4);
-  game.player2.place(boat4);
+
   expect(game.isPlayer1Ready).toStrictEqual(true);
-  // expect(game.isPlayer2Ready).toStrictEqual(true);
+  expect(game.isPlayer2Ready).toStrictEqual(true);
 });
 
-test('tracks game is ready', () => {
-  // expect(game.isReady).toStrictEqual(true);
+test('Checks game is ready.', () => {
+  expect(game.isReady).toStrictEqual(true);
 });
 
-test('change playing side to player 2', () => {
+test('Change playing side to player 2.', () => {
   game.player1.attack([2, 2]);
   expect(game.playerOnesTurn).toStrictEqual(false);
 });
 
-// test('change playing side to player 1', () => {
-//   game.player2.attack([2, 3])
-//   expect(game.playerOnesTurn).toStrictEqual(true)
-// })
-
-test('when game finishes, sets the winner', () => {
+test('When game finishes, sets the winner.', () => {
   game.player2.gameBoard.coordinates.forEach((coordinate) => {
-    const cloneCoordinate = coordinate;
-    cloneCoordinate.attacked = true;
+    // eslint-disable-next-line no-param-reassign
+    coordinate.attacked = true;
   });
-  expect(game.winner).toBe('Player 1');
+  expect(game.winner).toBe('Player');
 });
-
-/// //// ------ Game Phase ------- ///////

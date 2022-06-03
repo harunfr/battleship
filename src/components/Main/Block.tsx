@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { GiCargoShip, GiCrossMark, GiTireIronCross } from 'react-icons/gi';
 
 export interface BlockProps {
@@ -29,6 +28,7 @@ function Block({
   const isGameEnd = hasShip && winner;
   const isHit = attacked && hasShip;
   const isRivalHit = attacked && hasShip && !player;
+
   return (
     <div role="none" onClick={clickHandler} className={className}>
       {miss && <GiTireIronCross className="firm-cross" />}

@@ -2,8 +2,8 @@ import React from 'react';
 
 interface TextProps {
   children: React.ReactNode;
-  fontSize?: string;
   className?: string;
+  fontSize?: string;
 }
 
 function PageText({ children, className }: TextProps): React.ReactElement {

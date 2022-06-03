@@ -3,14 +3,14 @@ import GameBoard from '../GameElements/GameBoard';
 import testCoordinates from './testCoordinates';
 
 describe('Game Board Tests', () => {
-  describe('initilization of game board', () => {
+  describe('Initilization of game board', () => {
     const gameBoard = new GameBoard();
     test('game board has initially 10 x 10 coordinates', () => {
       expect(gameBoard.coordinates).toEqual(testCoordinates);
     });
   });
-  describe('placing ships on game board', () => {
-    test('ships can be placed horizontally on game board', () => {
+  describe('Placing ships on game board', () => {
+    test('Ships can be placed horizontally on game board', () => {
       const gameBoard = new GameBoard();
       const destroyer1 = new Destroyer('h', [4, 2]);
       gameBoard.place(destroyer1);
@@ -32,7 +32,7 @@ describe('Game Board Tests', () => {
       ];
       expect(gameBoard.coordinates).toEqual(expect.arrayContaining(expected));
     });
-    test('ships can be placed vertically on game board', () => {
+    test('Ships can be placed vertically on game board', () => {
       const gameBoard = new GameBoard();
       const destroyer2 = new Destroyer('v', [4, 2]);
       gameBoard.place(destroyer2);
@@ -56,7 +56,7 @@ describe('Game Board Tests', () => {
     });
 
     // Implacable Coordinates
-    test('game board marks implacable coordinates after placing boat', () => {
+    test('Game board marks implacable coordinates after placing boat', () => {
       const gameBoard = new GameBoard();
       const boat1 = new Boat('v', [2, 2]);
       gameBoard.place(boat1);
@@ -128,7 +128,7 @@ describe('Game Board Tests', () => {
       const { coordinates } = gameBoard;
       expect(coordinates).toEqual(expect.arrayContaining(expected));
     });
-    test('game board marks implacable coordinates after placing destroyer horizontally', () => {
+    test('Game board marks implacable coordinates after placing destroyer horizontally', () => {
       const gameBoard = new GameBoard();
       const destroyer2 = new Destroyer('h', [2, 2]);
       gameBoard.place(destroyer2);
@@ -222,7 +222,7 @@ describe('Game Board Tests', () => {
       expect(coordinates).toEqual(expect.arrayContaining(expected));
     });
 
-    test('game board marks implacable coordinates after placing destroyer vertically', () => {
+    test('Game board marks implacable coordinates after placing destroyer vertically', () => {
       const gameBoard = new GameBoard();
       const destroyer2 = new Destroyer('v', [2, 2]);
       gameBoard.place(destroyer2);
@@ -316,10 +316,10 @@ describe('Game Board Tests', () => {
       expect(coordinates).toEqual(expect.arrayContaining(expected));
     });
   });
-  describe('receives attack proprietly', () => {
+  describe('Receives attack proprietly', () => {
     const gameBoard = new GameBoard();
 
-    test('game board receives attack on unoccupied coordinate', () => {
+    test('Game board receives attack on unoccupied coordinate', () => {
       gameBoard.receiveAttack([4, 2]);
       const expected = [
         {
@@ -332,7 +332,7 @@ describe('Game Board Tests', () => {
       ];
       expect(gameBoard.coordinates).toEqual(expect.arrayContaining(expected));
     });
-    test('game board receives attack on occupied coordinate', () => {
+    test('Game board receives attack on occupied coordinate', () => {
       const destroyer2 = new Destroyer('v', [4, 2]);
       gameBoard.place(destroyer2);
       gameBoard.receiveAttack([4, 2]);

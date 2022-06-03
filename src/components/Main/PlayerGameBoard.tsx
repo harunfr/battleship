@@ -49,7 +49,7 @@ function PlayerGameBoard({
 
       <Wrapper>
         {isPlaced && (
-          <PlaceButton onClick={handleRandomise}>Randomize</PlaceButton>
+          <PlaceButton onClick={handleRandomise}>Place All</PlaceButton>
         )}
         {!isGameStarted && (
           <PlayButton onClick={handleGameStart} disabled={isPlaced}>

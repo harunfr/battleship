@@ -1,10 +1,8 @@
 import React from 'react';
 
 import { Container } from './styles';
-
 import PlayerGameBoard from './PlayerGameBoard';
 import RivalGameBoard from './RivalGameBoard';
-
 import { Coordinate } from '../../GameElements/GameBoard';
 
 interface MainProps {

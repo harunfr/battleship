@@ -1,11 +1,10 @@
-import { Coordinate } from './GameBoard';
+import GameBoard, { Coordinate } from './GameBoard';
 import Player from './Player';
 
 export default class Game {
   player1: Player;
 
   player2: Player;
-  // isReady: boolean
 
   constructor() {
     this.player1 = new Player();
@@ -13,15 +12,25 @@ export default class Game {
     this.player1.rival = this.player2;
     this.player2.rival = this.player1;
     this.player2.placeRandomly();
-    // this.isReady = false
+  }
+
+  reset() {
+    this.player1 = new Player();
+    this.player2 = new Player();
+    this.player1.rival = this.player2;
+    this.player2.rival = this.player1;
+    this.player1.gameBoard = new GameBoard();
+    this.player2.gameBoard = new GameBoard();
+    this.player2.placeRandomly();
+    this.playerOnesTurn = true;
   }
 
   get winner(): string | undefined {
     if (this.player1.health === 0) {
-      return 'Player 2';
+      return 'Game Bot';
     }
     if (this.player2.health === 0) {
-      return 'Player 1';
+      return 'Player';
     }
     return undefined;
   }

@@ -4,24 +4,21 @@ import {
   Destroyer,
   Battleship,
 } from '../GameElements/Ship/index';
-// split codes to test both coordinates and length individually.
-// test both vertical and horizontal placement
-// what about implacable or placable coordinates?
 
 describe('Ship Tests', () => {
-  test('boat has coordinate and correct length, horizontallly', () => {
+  test('Boat has coordinate and correct length, horizontallly.', () => {
     const boat1 = new Boat('h', [2, 2]);
     expect(boat1.coordinates).toEqual([[2, 2]]);
     expect(boat1.length).toBe(1);
   });
 
-  test('boat has coordinate and correct length, vertically', () => {
+  test('Boat has coordinate and correct length, vertically.', () => {
     const boat1 = new Boat('v', [2, 2]);
     expect(boat1.coordinates).toEqual([[2, 2]]);
     expect(boat1.length).toBe(1);
   });
 
-  test('destroyer has coordinate and correct length, horizontallly', () => {
+  test('Destroyer has coordinate and correct length, horizontallly.', () => {
     const destroyer1 = new Destroyer('h', [4, 2]);
     expect(destroyer1.coordinates).toEqual([
       [4, 2],
@@ -30,7 +27,7 @@ describe('Ship Tests', () => {
     expect(destroyer1.length).toBe(2);
   });
 
-  test('destroyer has coordinate and correct length, vertical', () => {
+  test('Destroyer has coordinate and correct length, vertically.', () => {
     const destroyer1 = new Destroyer('v', [4, 2]);
     expect(destroyer1.coordinates).toEqual([
       [4, 2],
@@ -39,7 +36,7 @@ describe('Ship Tests', () => {
     expect(destroyer1.length).toBe(2);
   });
 
-  test('cruiser has correct coordinates and length, horizontallly', () => {
+  test('Cruiser has correct coordinates and length, horizontallly.', () => {
     const cruiser1 = new Cruiser('h', [1, 1]);
     expect(cruiser1.coordinates).toEqual([
       [1, 1],
@@ -49,7 +46,7 @@ describe('Ship Tests', () => {
     expect(cruiser1.length).toBe(3);
   });
 
-  test('cruiser has correct coordinates and length, vertically', () => {
+  test('Cruiser has correct coordinates and length, vertically.', () => {
     const cruiser1 = new Cruiser('v', [1, 1]);
     expect(cruiser1.coordinates).toEqual([
       [1, 1],
@@ -58,7 +55,7 @@ describe('Ship Tests', () => {
     ]);
     expect(cruiser1.length).toBe(3);
   });
-  test('battleship has correct coordinates and length, horizontallly', () => {
+  test('Battleship has correct coordinates and length, horizontallly.', () => {
     const battleship = new Battleship('h', [1, 1]);
     expect(battleship.coordinates).toEqual([
       [1, 1],
@@ -68,7 +65,7 @@ describe('Ship Tests', () => {
     ]);
     expect(battleship.length).toBe(4);
   });
-  test('battleship has correct coordinates and length, vertically', () => {
+  test('Battleship has correct coordinates and length, vertically.', () => {
     const battleship = new Battleship('v', [1, 1]);
     expect(battleship.coordinates).toEqual([
       [1, 1],
